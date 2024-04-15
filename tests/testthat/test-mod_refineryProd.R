@@ -25,7 +25,7 @@ testServer(
     # - Testing output
     # expect_true(inherits(output$tbl$html, "html"))
 })
- 
+
 test_that("module ui works", {
   ui <- mod_refineryProd_ui(id = "test")
   golem::expect_shinytaglist(ui)
@@ -35,4 +35,15 @@ test_that("module ui works", {
     expect_true(i %in% names(fmls))
   }
 })
- 
+
+testthat::test_that("data ha no nas", {
+  delStatus <- any(is.na(refineryanalysis::masterDeliveries))
+  prodStatus <- any(is.na(refineryanalysis::masterProd))
+  recStatus <- any(is.na(refineryanalysis::masterReceipts))
+  shapeStatus <- any(is.na(refineryanalysis::refShape))
+
+  finalStatus <- any(delStatus, prodStatus, recStatus, shapeStatus)
+
+  testthat::expect_false(finalStatus)
+
+})

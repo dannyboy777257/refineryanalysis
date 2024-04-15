@@ -9,6 +9,7 @@ app_server <- function(input, output, session) {
 
   r <- shiny::reactiveValues()
 
+  # added tests to make sure the datasets do not have any na's
   # assigning global variables
   r$masterProd <- refineryanalysis::masterProd
 
