@@ -37,7 +37,8 @@ mod_userGuide_ui <- function(id){
         shiny::h4("- Additional tab which will display pipeline, barge movements of products to and from PADD 3"),
         shiny::h4("- Additional tab for analytics to view correlations, relationships etc."),
         shiny::h4("- Creating more ways of viewing the data in current tabs using various graphs"),
-        shiny::h4("- Adding more years of data")
+        shiny::h4("- Adding more years of data"),
+        shiny::h3("Author: Daniel Vovk")
       )
     )
 
