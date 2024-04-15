@@ -10,7 +10,15 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      h1("refineryanalysis")
+      theme = shinythemes::shinytheme("united"),
+      shiny::navbarPage(id = "myTabs",
+           "Refinery Analysis",
+           shiny::tabPanel("Refinery Production",
+                           mod_refineryProd_ui("refineryProd_1")),
+           shiny::tabPanel("Refinery Movements",
+                           mod_refineryMove_ui("refineryMove_1"))
+
+      )
     )
   )
 }
