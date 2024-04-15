@@ -47,7 +47,7 @@ usethis::use_lifecycle_badge("Experimental")
 usethis::use_news_md(open = FALSE)
 
 ## Use git ----
-usethis::use_git()
+usethis::use_git(message = "initial commit")
 
 ## Init Testing Infrastructure ----
 ## Create a template for tests
