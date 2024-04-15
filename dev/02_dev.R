@@ -22,6 +22,8 @@ usethis::use_package("plotly")
 usethis::use_package("dplyr")
 usethis::use_package("shinythemes")
 usethis::use_package("tidyr")
+usethis::use_package("sf")
+usethis::use_package("leaflet")
 
 ## Add modules ----
 ## Create a module infrastructure in R/

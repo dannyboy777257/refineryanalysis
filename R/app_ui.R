@@ -13,10 +13,14 @@ app_ui <- function(request) {
       theme = shinythemes::shinytheme("united"),
       shiny::navbarPage(id = "myTabs",
            "Refinery Analysis",
+           shiny::tabPanel("User Guide",
+                           mod_userGuide_ui("userGuide_1")),
            shiny::tabPanel("Refinery Production",
                            mod_refineryProd_ui("refineryProd_1")),
            shiny::tabPanel("Refinery Movements",
-                           mod_refineryMove_ui("refineryMove_1"))
+                           mod_refineryMove_ui("refineryMove_1")),
+           shiny::tabPanel("Refinery Map",
+                           mod_refLocations_ui("refLocations_1"))
 
       )
     )

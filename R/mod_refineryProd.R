@@ -51,6 +51,7 @@ mod_refineryProd_server <- function(id, r){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
+    # largest refineries based on total product productions and displays fuel used too
     output$bigRef <- plotly::renderPlotly({
 
       r$masterProd %>%
@@ -72,6 +73,7 @@ mod_refineryProd_server <- function(id, r){
 
     })
 
+    # updating product input based on refinery chosen above
     shiny::observeEvent(input$selectRefinery, {
 
       shiny::updateSelectInput(
@@ -91,6 +93,7 @@ mod_refineryProd_server <- function(id, r){
 
     })
 
+    # total production by product for chosen refinery through time
     output$totalProduction <- plotly::renderPlotly({
 
       shiny::req(input$selectRefinery)
@@ -110,6 +113,7 @@ mod_refineryProd_server <- function(id, r){
 
     })
 
+    # total inputs used by product for chosen refinery
     output$totalRuns <- plotly::renderPlotly({
 
       shiny::req(input$selectRefinery)
@@ -129,6 +133,7 @@ mod_refineryProd_server <- function(id, r){
                        showlegend = TRUE)
     })
 
+    # view starting inventories by product through time for refinery
     output$startInv <- plotly::renderPlotly({
 
       shiny::req(input$selectRefinery, input$selectProduct)
@@ -158,37 +163,6 @@ mod_refineryProd_server <- function(id, r){
                        barmode = "group")
 
     })
-
-
-    # output$startInv <- plotly::renderPlotly({
-    #
-    #   shiny::req(input$selectRefinery, input$selectProduct)
-    #
-    #   # I am colorblind and I can see it so colors may be funky
-    #   colorPal <- c("#000000","#004949","#009292","#ff6db6","#ffb6db",
-    #                 "#490092","#006ddb","#b66dff","#6db6ff","#b6dbff",
-    #                 "#920000","#924900","#db6d00","#24ff24","#ffff6d",
-    #                 "#1b8537","#1343d4","#092787","#7c0982","#442e45",
-    #                 "#b8393f","#f5959a","#e0c453","#db231d")
-    #
-    #   mats <- unique(masterProd$material)
-    #   pal <- magrittr::set_names(colorPal, mats)
-    #
-    #   r$masterProd %>%
-    #     dplyr::filter(Refinery == input$selectRefinery,
-    #                   material %in% input$selectProduct) %>%
-    #     dplyr::arrange(dplyr::desc(date)) %>%
-    #     plotly::plot_ly(x = ~date,
-    #                     y = ~startInv,
-    #                     type = "bar",
-    #                     color = ~material,
-    #                     colors = pal) %>%
-    #     plotly::layout(title = "Inventory Through Time",
-    #                    xaxis = list(title = "Date"),
-    #                    yaxis = list(title = "Volume (barrels)"))
-    #
-    # })
-
 
   })
 }

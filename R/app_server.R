@@ -16,6 +16,10 @@ app_server <- function(input, output, session) {
 
   r$masterReceipts <- refineryanalysis::masterReceipts
 
+  r$refMap <- refineryanalysis::refShape
+
   mod_refineryProd_server("refineryProd_1", r = r)
   mod_refineryMove_server("refineryMove_1", r = r)
+  mod_refLocations_server("refLocations_1", r = r)
+  mod_userGuide_server("userGuide_1")
 }

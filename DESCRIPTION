@@ -8,8 +8,10 @@ Imports:
     config (>= 0.3.2),
     dplyr,
     golem (>= 0.4.1),
+    leaflet,
     magrittr,
     plotly,
+    sf,
     shiny (>= 1.8.0),
     shinythemes,
     tidyr
