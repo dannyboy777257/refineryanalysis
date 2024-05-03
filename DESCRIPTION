@@ -10,6 +10,7 @@ Imports:
     golem (>= 0.4.1),
     leaflet,
     magrittr,
+    pkgload,
     plotly,
     sf,
     shiny (>= 1.8.0),
