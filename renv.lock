@@ -1364,13 +1364,28 @@
       "Package": "refineryanalysis",
       "Version": "0.0.0.9000",
       "Source": "GitHub",
+      "Remotes": "github::dannyboy777257/refineryanalysis",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "refineryanalysis",
       "RemoteUsername": "dannyboy777257",
-      "RemoteRef": "master",
+      "RemoteRef": "8ece0614b34a54d90eeb2857b180218441011b1c",
       "RemoteSha": "8ece0614b34a54d90eeb2857b180218441011b1c",
-      "Hash": "5c1c2c063ca95e7ca799c23ab977ca05"
+      "Requirements": [
+        "R",
+        "config",
+        "dplyr",
+        "golem",
+        "leaflet",
+        "magrittr",
+        "pkgload",
+        "plotly",
+        "sf",
+        "shiny",
+        "shinythemes",
+        "tidyr"
+      ],
+      "Hash": "faddd9e385fc483e61080ae7c35ed09b"
     },
     "rematch": {
       "Package": "rematch",
