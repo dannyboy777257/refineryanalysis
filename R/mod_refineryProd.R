@@ -24,6 +24,9 @@ mod_refineryProd_ui <- function(id){
     plotly::plotlyOutput(outputId = ns("totalProduction")),
     shiny::br(),
     shiny::br(),
+    shiny::plotOutput(outputId = ns("prodCor"), height = "900px"),
+    shiny::br(),
+    shiny::br(),
     plotly::plotlyOutput(outputId = ns("totalRuns")),
     shiny::br(),
     shiny::br(),
@@ -112,6 +115,30 @@ mod_refineryProd_server <- function(id, r){
                        yaxis = list(title = "Volume (barrels)"))
 
     })
+
+    output$prodCor <- shiny::renderPlot({
+
+    col_function <- function(data, mapping, method = "kendall", use ="pairwise"){
+      x <- GGally::eval_data_col(data, mapping$x)
+      y <- GGally::eval_data_col(data, mapping$y)
+      correlation <- stats::cor(x,y, method = method, use = use)
+      col_palate <- grDevices::colorRampPalette(c("blue", "white", "green"), interpolate = "spline")
+      fill_in <- col_palate(100)[findInterval(correlation, seq(-1,1, length=100))]
+      GGally::ggally_cor(data = data, mapping = mapping)+ggplot2::theme_void()+ggplot2::theme(panel.background = ggplot2::element_rect(fill = fill_in))}
+    # browser()
+    r$masterProd %>%
+      dplyr::filter(Refinery == input$selectRefinery,
+                    Produced != 0) %>%
+      dplyr::select(material, Produced, date) %>%
+      tidyr::pivot_wider(names_from = material, values_from = Produced) %>%
+      dplyr::arrange(dplyr::desc(date)) %>%
+      tidyr::fill(dplyr::everything(), .direction = "down") %>%
+      tidyr::fill(dplyr::everything(), .direction = "up") %>%
+      dplyr::select(-date) %>%
+      GGally::ggpairs(axisLabels = "none", upper = list(continuous = col_function, lower = list(continuous = GGally::wrap("points", size = 0.8))))
+
+    })
+
 
     # total inputs used by product for chosen refinery
     output$totalRuns <- plotly::renderPlotly({

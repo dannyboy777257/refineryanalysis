@@ -7,6 +7,8 @@ License: file LICENSE
 Imports: 
     config (>= 0.3.2),
     dplyr,
+    GGally,
+    ggplot2,
     golem (>= 0.4.1),
     leaflet,
     magrittr,
