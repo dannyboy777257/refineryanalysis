@@ -24,6 +24,8 @@ usethis::use_package("shinythemes")
 usethis::use_package("tidyr")
 usethis::use_package("sf")
 usethis::use_package("leaflet")
+usethis::use_package("GGally")
+usethis::use_package("ggplot2")
 
 ## Add modules ----
 ## Create a module infrastructure in R/
